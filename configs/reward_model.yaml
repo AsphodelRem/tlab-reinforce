@@ -1,0 +1,34 @@
+reward_model:
+    model_name: 'HuggingFaceTB/SmolLM2-135M-Instruct'
+    model_params:
+        trust_remote_code: True
+        num_labels: 1
+        ignore_mismatched_sizes: True
+    tokenizer:
+        padding: True
+        truncate: True
+        use_fast: True
+
+trainer:
+    training_args:
+        per_device_train_batch_size: 16
+        per_device_eval_batch_size: 16
+        eval_strategy: "steps"
+        output_dir: 'reward_model'
+        num_train_epochs: 1
+        gradient_checkpointing: True
+        learning_rate: 5.0e-5
+        logging_steps: 15
+        eval_steps: 50
+        max_length: 2048
+        center_rewards_coefficient: 0.01
+        bf16: True
+        save_steps: 50
+        report_to: 'comet_ml'
+        push_to_hub: True
+        hub_model_id: 'AsphodelRem/test-reward-model'
+
+dataset:
+    dataset_name: 'esfrankel17/HelpSteer2_binarized'
+    split: 'average_rating_split'
+    test_size: 0.1
