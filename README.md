@@ -12,14 +12,11 @@
 
 ### `report/`
 - **report.md**: Markdown file for reporting project details, results, and analysis.
-
+- 
 ### `src/`
 - **dataset.py**: Script for managing and processing datasets.
 - **loss.py**: Script for defining and calculating loss functions.
-- **LICENSE**: License information for the project.
-- **requirements.txt**: File listing the project dependencies.
-- **run_reinforce.py**: Script to run the reinforcement learning training.
-- **train_reward_model.py**: Script to train the reward model.
+- 
 ### `src/trainers/`
 - **reinforce_trainer.py**: Python script for training using the reinforcement learning approach.
 - **reward_model_pairwised.py**: Python script for training the reward model using pairwise comparisons.
@@ -27,6 +24,9 @@
 ### `src/utils/`
 - **init_utils.py**: Initialization utilities for the project.
 - **io_utils.py**: Input/Output utilities for handling data.
+
+- **run_reinforce.py**: Script to run the reinforcement learning training.
+- **train_reward_model.py**: Script to train the reward model.
 
 
 
