@@ -36,7 +36,6 @@ trainer:
         
         bf16: True                      
         gradient_accumulation_steps: 8   
-        dataloader_num_workers: 4   
         remove_unused_columns: False   
         
         optim: "adamw_torch"            
