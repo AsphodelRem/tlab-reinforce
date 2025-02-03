@@ -15,11 +15,11 @@
 
 ### `report/`
 - **report.md**: Markdown file for reporting project details, results, and analysis.
-- 
+  
 ### `src/`
 - **dataset.py**: Script for managing and processing datasets.
 - **loss.py**: Script for defining and calculating loss functions.
-- 
+  
 ### `src/trainers/`
 - **reinforce_trainer.py**: Python script for training using the reinforcement learning approach.
 - **reward_model_pairwised.py**: Python script for training the reward model using pairwise comparisons.
