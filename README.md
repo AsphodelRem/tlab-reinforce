@@ -20,11 +20,11 @@
 - **requirements.txt**: File listing the project dependencies.
 - **run_reinforce.py**: Script to run the reinforcement learning training.
 - **train_reward_model.py**: Script to train the reward model.
-#### `trainers/`
+### `src/trainers/`
 - **reinforce_trainer.py**: Python script for training using the reinforcement learning approach.
 - **reward_model_pairwised.py**: Python script for training the reward model using pairwise comparisons.
 
-#### `utils/`
+### `src/utils/`
 - **init_utils.py**: Initialization utilities for the project.
 - **io_utils.py**: Input/Output utilities for handling data.
 
