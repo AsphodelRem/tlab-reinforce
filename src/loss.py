@@ -1,4 +1,4 @@
-from typing import Dict, Type, Tuple
+from typing import ClassVar, Dict, Type, Tuple
 
 import torch
 import torch.nn as nn
@@ -10,7 +10,7 @@ class LossRegister:
     @classmethod
     def register(cls, name):
         def decorator(subclass: Type):
-            if name in cls._registry:
+            if name in cls._registry and not exist_ok:
                 raise ValueError(f"Class with name '{name}' is already registered.")
             cls._registry[name] = subclass
             return subclass
@@ -26,18 +26,22 @@ class ReinforceLoss(nn.Module):
     def __init__(self):
         pass
 
-    def __call__(self, log_probs, reward, baseline):  
-        log_probs_total = log_probs.sum(dim=1)
-        return -(log_probs_total * (reward - baseline)).mean()
+    def __call__(self, log_probs: torch.tensor, reward: torch.tensor):  
+        return -(log_probs * reward).mean()
+
+@LossRegister.register('prob_reward_loss')
+class CustomRewardLoss(nn.Module):
+    def __init__(self):
+        pass
+
+    def __call__(self, log_probs: torch.tensor, reward_distribution: torch.tensor):
+        num_ratings = reward_distribution.size(0)
+        ratings = torch.arange(1, num_ratings + 1, device=reward_distribution.device).float()
+        scalar_reward = torch.mean(reward_distribution * ratings, dim=-1)
+
+        return -(log_probs * scalar_reward).mean()
 
 
-@LossRegister.register('dpo_loss')
-class DPOLoss(nn.Module):
-    def __init__(self, beta: float=1.0):
-        self.beta = beta
 
-    def __call__(self, reward_l, gt_l, reward_w, gt_w):
-        return -(
-            self.beta * torch.log(reward_l / gt_l) - self.beta * torch.log(reward_w / gt_w)
-        ).mean()
-        
+
+    

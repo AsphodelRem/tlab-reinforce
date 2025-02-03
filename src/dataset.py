@@ -6,9 +6,9 @@ def prepare_dataset(
     split: str,
     test_size=0.2
 ):
-    '''
+    """
     Creates train and eval partition
-    '''
+    """
 
     dataset = load_dataset(dataset_name, split=split)
 
