@@ -81,7 +81,10 @@ def main(config):
         eval_dataset=test_ds,
         loss_class='reinforce_loss',
     )
-
+    
+    print("Start evaluation to get SFT mean reward")
+    print(f"SFT metrics: {trainer.evaluate()}")
+    
     trainer.train()
     trainer.evaluate()
 
