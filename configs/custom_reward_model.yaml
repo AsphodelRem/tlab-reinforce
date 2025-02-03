@@ -2,7 +2,7 @@ reward_model:
     model_name: 'HuggingFaceTB/SmolLM2-135M-Instruct'
     model_params:
         trust_remote_code: True
-        num_labels: 1
+        num_labels: 10
         ignore_mismatched_sizes: True
     tokenizer:
         padding: True
@@ -26,7 +26,7 @@ trainer:
         save_steps: 50 
         # report_to: 'comet_ml'
         # push_to_hub: True
-        # hub_model_id: 'AsphodelRem/test-reward-model'
+        # hub_model_id: 'AsphodelRem/test-custom-reward-model'
     
 dataset:
     dataset_name: 'esfrankel17/HelpSteer2_binarized'

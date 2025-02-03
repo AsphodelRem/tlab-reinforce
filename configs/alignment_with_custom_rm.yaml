@@ -1,0 +1,54 @@
+sft:
+    model_name: 'HuggingFaceTB/SmolLM2-135M-Instruct'
+    model_params:
+        max_length: 512
+        trust_remote_code: True
+    tokenizer:
+        padding: True
+        truncate: True
+        use_fast: True
+        padding_side: 'left'
+    
+reward_model:
+    model_name: 'AsphodelRem/test-custom-reward-model'
+    model_params:
+        trust_remote_code: True
+    tokenizer:
+        padding: True
+        truncate: True
+        use_fast: True
+
+trainer:
+    loss: 'reinforce_loss'
+    training_args:
+        output_dir: "./aligned_custom"          
+        num_train_epochs: 1              
+        per_device_train_batch_size: 2  
+        per_device_eval_batch_size: 4   
+        learning_rate: 5.0e-5             
+        
+        logging_dir: "./logs"            
+        logging_steps: 2              
+        save_steps: 5                  
+        eval_strategy: "steps"     
+        eval_steps: 5
+        max_steps: 40
+        
+        bf16: True                      
+        gradient_accumulation_steps: 8   
+        dataloader_num_workers: 4   
+        remove_unused_columns: False   
+        
+        optim: "adamw_torch"            
+        # report_to: "comet_ml" 
+        
+    model_config:
+        r: 16
+        lora_alpha: 16
+        lora_dropout: 0.05
+        task_type: 'CAUSAL_LM'
+     
+dataset:
+    dataset_name: 'esfrankel17/HelpSteer2_binarized'
+    split: 'average_rating_split'
+    test_size: 0.1
