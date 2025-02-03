@@ -4,6 +4,9 @@
 
 ## Structure:
 
+- **run_reinforce.py**: Script to run the reinforcement learning training.
+- **train_reward_model.py**: Script to train the reward model.
+
 ### `configs/`
 - **alignment_with_custom_rm.yaml**: Configuration file for alignment with a custom reward model.
 - **alignment.yaml**: General alignment configuration file.
@@ -24,11 +27,6 @@
 ### `src/utils/`
 - **init_utils.py**: Initialization utilities for the project.
 - **io_utils.py**: Input/Output utilities for handling data.
-
-- **run_reinforce.py**: Script to run the reinforcement learning training.
-- **train_reward_model.py**: Script to train the reward model.
-
-
 
 ## How to reproduce:
 ```
